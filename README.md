@@ -6,7 +6,7 @@
 
 ## [커밋 룰]
 
-Tag Type
+Tag Type  
 Init : 프로젝트 생성  
 Feat : 새로운 기능 추가  
 Fix : 버그 수정  
