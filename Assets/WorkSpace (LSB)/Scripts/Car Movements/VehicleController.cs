@@ -4,12 +4,15 @@ using UnityEngine.InputSystem;
 
 public class VehicleController : MonoBehaviour
 {
-    //private Gear currentGear;
 
     [SerializeField] private LightController lightController;
     [SerializeField] private WheelController wheelController;
     [SerializeField] private SteeringWheelController steeringWheelController;
 
+    #region Gears
+    private Gear D, N, R, P;
+    private Gear currentGear;
+    #endregion
     #region InputSystems
     KeyBoardInputActions action;
     InputAction moveFrontBackAction;
@@ -23,6 +26,7 @@ public class VehicleController : MonoBehaviour
     private void Awake()
     {
         AllocateInputActions();
+        InitGears();
         wheelController.ApplyBreakForce(false);  // 처음 사이드 브레이크 작동
     }
 
@@ -38,12 +42,11 @@ public class VehicleController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        wheelController.ApplyAcceleration(GetAccelerate());
-        wheelController.ApplyWheelTurnAngle(GetLeftRight());
-        wheelController.ApplyBreakForce(GetBreak());
-
-        steeringWheelController.UpdateSteeringWheel(GetLeftRight());
+        currentGear.Drive();
     }
+
+    public WheelController GetWheelController() { return wheelController; }
+    public SteeringWheelController GetSteeringWheelController() { return steeringWheelController; } 
 
     void AllocateInputActions()
     {
@@ -56,6 +59,15 @@ public class VehicleController : MonoBehaviour
         GearChangeAction = action.Car.GearChange;
     }
 
+    void InitGears()
+    {
+        D = new DriveGear(this);
+        N = new NeutralGear(this);
+        R = new ReverseGear(this);
+        P = new ParkingGear(this);
+        currentGear = P;
+    }
+
     void EnableAllActions()
     {
         moveFrontBackAction.Enable();
@@ -66,6 +78,7 @@ public class VehicleController : MonoBehaviour
         sideBreakAction.Enable();
         sideBreakAction.performed += GetSideBreakControl;
         GearChangeAction.Enable();
+        GearChangeAction.performed += GetGearChangeControl;
     }
 
     void DisableAllActions()
@@ -77,7 +90,8 @@ public class VehicleController : MonoBehaviour
         lightControlAction.performed -= GetLightControl;
         sideBreakAction.Disable();
         sideBreakAction.performed -= GetSideBreakControl;
-        GearChangeAction?.Disable();
+        GearChangeAction.Disable();
+        GearChangeAction.performed -= GetGearChangeControl;
     }
 
     public float GetAccelerate()
@@ -124,7 +138,7 @@ public class VehicleController : MonoBehaviour
 
         switch (control.name)
         {
-            case "numpad0":
+            case "0":
                 wheelController.ApplySideBreak();
                 break;
             default:
@@ -138,17 +152,21 @@ public class VehicleController : MonoBehaviour
 
         switch (control.name)
         {
-            case "numpad1":
-                
+            case "1":
+                currentGear = D;
+                Debug.Log("D");
                 break;
-            case "numpad2":
-                
+            case "2":
+                currentGear = N;
+                Debug.Log("N");
                 break;
-            case "numpad3":
-                
+            case "3":
+                currentGear = R;
+                Debug.Log("R");
                 break;
-            case "numpad4":
-                
+            case "4":
+                currentGear = P;
+                Debug.Log("P");
                 break;
             default:
                 break;

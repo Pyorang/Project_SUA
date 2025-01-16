@@ -19,7 +19,7 @@ public class WheelController : MonoBehaviour
     public bool sideBreakOn = true;
 
     public float acceleration = 500f;
-    public float breakingForce = 300f;
+    public float breakingForce = 500f;
     public float maxTurnAngle = 15f;
 
     private float currentAcceleration = 0f;
