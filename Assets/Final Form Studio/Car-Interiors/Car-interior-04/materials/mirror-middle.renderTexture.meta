@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 61df61ed91ea16c469115720f320f0cd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194442
+  packageName: Car interior 04
+  packageVersion: 1.0
+  assetPath: Assets/Final Form Studio/Car-Interiors/Car-interior-04/materials/mirror-middle.renderTexture
+  uploadId: 430948
