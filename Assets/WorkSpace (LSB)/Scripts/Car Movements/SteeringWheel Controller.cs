@@ -3,6 +3,7 @@ using UnityEngine;
 public class SteeringWheelController : MonoBehaviour
 {
     public float maxTurnAngle = 60f;
+    public float turnSpeed = 4.0f;
     private float currentTurnAngle = 0f;
 
     [SerializeField] Transform steeringWheel;
@@ -11,9 +12,11 @@ public class SteeringWheelController : MonoBehaviour
     {
         Vector3 rotation = steeringWheel.localEulerAngles;
 
-        currentTurnAngle = maxTurnAngle * Input;
-        rotation.z = currentTurnAngle;
+        float targetTurnAngle = maxTurnAngle * Input;
 
+        currentTurnAngle = Mathf.Lerp(currentTurnAngle, targetTurnAngle, Time.deltaTime * turnSpeed);
+
+        rotation.z = -currentTurnAngle;
         steeringWheel.localRotation = Quaternion.Euler(rotation);
     }
 }
