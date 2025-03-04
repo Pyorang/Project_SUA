@@ -25,3 +25,5 @@ Init: Create Ajou-swift project
 - 어떠한 문제가 발생하여 무엇을 해결  
 - 왜 이러한 방법을 사용하여 개발
 
+## [노션]
+https://www.notion.so/197c7561c39780bb93a8c2a739524f70
