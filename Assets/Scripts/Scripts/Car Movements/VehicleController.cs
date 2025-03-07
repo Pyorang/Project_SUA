@@ -141,7 +141,11 @@ public class VehicleController : MonoBehaviour
             case "0":
                 wheelController.ApplySideBreak();
                 break;
+            case "button16":
+                wheelController.ApplySideBreak();
+                break;
             default:
+                Debug.Log("Unknown input : " + control.name);
                 break;
         }
     }
@@ -168,7 +172,24 @@ public class VehicleController : MonoBehaviour
                 currentGear = P;
                 Debug.Log("P");
                 break;
+            case "button17":
+                currentGear = D;
+                Debug.Log("D");
+                break;
+            case "button18":
+                currentGear = N;
+                Debug.Log("N");
+                break;
+            case "button21":
+                currentGear = R;
+                Debug.Log("R");
+                break;
+            case "button22":
+                currentGear = P;
+                Debug.Log("P");
+                break;
             default:
+                Debug.Log("Unknown input : " + control.name);
                 break;
         }
     }
