@@ -146,48 +146,26 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "FrontBack",
-                    "id": "1f06b877-f684-47c8-8a95-9ba68a0230c4",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FrontBack",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Positive",
-                    "id": "2ce5bc3e-99ac-4f23-bb76-04f885c48c76",
+                    "name": "",
+                    "id": "790515d8-0f89-4d17-9dc3-780fd48dc893",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard & Mouse",
                     "action": "FrontBack",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "FrontBack",
-                    "id": "acbe123e-fb56-4c00-9b0a-21e2f189c635",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FrontBack",
-                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "1912bfb5-a773-47f4-aaee-b8cf2ac390c2",
+                    "name": "",
+                    "id": "fe1db336-a73e-434a-9761-f89822763a4a",
                     "path": "<HID::Wired Wheel>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Steering Wheel",
+                    "groups": ";Steering Wheel",
                     "action": "FrontBack",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -246,6 +224,39 @@
                 },
                 {
                     "name": "1D Axis",
+                    "id": "31430884-89d3-4253-bf3d-d5dea01d13a7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookLeftRight",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8a1029b3-8264-4eb5-8404-b73c026868f9",
+                    "path": "<HID::Wired Wheel>/hat/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Steering Wheel",
+                    "action": "LookLeftRight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "79de8f7a-0c70-4b04-8efc-70b706745bc5",
+                    "path": "<HID::Wired Wheel>/hat/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Steering Wheel",
+                    "action": "LookLeftRight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
                     "id": "b4f5c528-b523-4d3c-9d24-8f390c5b5309",
                     "path": "1DAxis",
                     "interactions": "",
@@ -278,26 +289,37 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "64541d6a-8b3e-4f5c-a051-a8a8e9c9679c",
-                    "path": "<Keyboard>/j",
+                    "name": "1D Axis",
+                    "id": "7cd2c854-b3d6-46db-baea-aa27e140c32d",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
-                    "action": "LightControl",
-                    "isComposite": false,
+                    "groups": "",
+                    "action": "LookUpDown",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "545a9d0e-7983-4252-bd44-dc3c9b50dffc",
-                    "path": "<Keyboard>/k",
+                    "name": "negative",
+                    "id": "f2ef41cd-7935-4eb6-92f3-c3a9909eab93",
+                    "path": "<HID::Wired Wheel>/hat/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
-                    "action": "LightControl",
+                    "groups": ";Steering Wheel",
+                    "action": "LookUpDown",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4b3463f6-15cf-484d-9248-7f9d0844f2c4",
+                    "path": "<HID::Wired Wheel>/hat/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Steering Wheel",
+                    "action": "LookUpDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -305,18 +327,18 @@
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
+                    "groups": ";Keyboard & Mouse",
                     "action": "LightControl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "031ea02e-6700-4074-825d-01918957671c",
-                    "path": "<Keyboard>/r",
+                    "id": "65f0afd6-06b5-40d6-ae73-1ad89dbb2d1f",
+                    "path": "<HID::Wired Wheel>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
+                    "groups": ";Steering Wheel",
                     "action": "LightControl",
                     "isComposite": false,
                     "isPartOfComposite": false

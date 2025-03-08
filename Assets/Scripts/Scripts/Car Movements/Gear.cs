@@ -2,7 +2,10 @@ using UnityEngine;
 
 public enum GearType
 {
-    DriveGear = 1, NeutralGear = 2, ReverseGear = 3, ParkingGear = 4
+    DriveGear = 1, 
+    NeutralGear = 2, 
+    ReverseGear = 3, 
+    ParkingGear = 4
 }
 
 public interface Gear
@@ -12,7 +15,7 @@ public interface Gear
 
 public class DriveGear : Gear
 {
-    public const float defaultSpeed = 100f;
+    public const float defaultSpeed = 1f;
     public GearType gear = GearType.DriveGear;
     public VehicleController vehicleController;
 
@@ -23,7 +26,7 @@ public class DriveGear : Gear
 
     public void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(defaultSpeed + vehicleController.GetAccelerate());
+        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate());
         vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
         vehicleController.GetWheelController().ApplyBreakForce(vehicleController.GetBreak());
 

@@ -3,13 +3,25 @@ using UnityEngine.InputSystem;
 
 public class CameraMove : MonoBehaviour
 {
-    public float rotationSpeed = 100f; // 회전 속도
-    private float xRotation = 20f; // X축 회전값
-    private float yRotation = 0f; // Y축 회전값
+    [Header("Camera Sensitivity Settings")]
+    [Space]
+    [SerializeField] private float rotationSpeed = 100f;
 
+    [Header("Camera  Max Rotation Settings")]
+    [Space]
+    [SerializeField] private float MaxLeftRotation = -30f;
+    [SerializeField] private float MaxRightRotation = 30f;
+    [SerializeField] private float MaxUpRotation = 95f;
+    [SerializeField] private float MaxDownRotation = -30f;
+
+    private float xRotation = 20f;
+    private float yRotation = 0f;
+
+    #region InputSystems
     KeyBoardInputActions action;
     InputAction lookUpDonwAction;
     InputAction lookLeftRightAction;
+    #endregion
 
     private void Awake()
     {
@@ -31,21 +43,21 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-        // 마우스 입력값 가져오기
-        float mouseX = lookLeftRightAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
-        float mouseY = lookUpDonwAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
+        UpdateCameraMove();
+    }
 
-        // X축(Yaw) 및 Y축(Pitch) 업데이트
-        yRotation += mouseX;            // Y축 회전 (좌우)
-        xRotation -= mouseY;            // X축 회전 (상하)
+    private void UpdateCameraMove()
+    {
+        float xMove = lookLeftRightAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
+        float yMove = lookUpDonwAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
 
-        // X축 회전을 제한 (예: -90도 ~ 90도)
-        xRotation = Mathf.Clamp(xRotation, -30f, 30f);
+        yRotation += xMove;
+        xRotation -= yMove;
 
-        // Y축 회전을 제한 (예: -90도 ~ 90도)
-        yRotation = Mathf.Clamp(yRotation, -30f, 95f);
+        xRotation = Mathf.Clamp(xRotation, MaxLeftRotation, MaxRightRotation);
 
-        // Z축은 항상 0으로 고정
+        yRotation = Mathf.Clamp(yRotation, MaxDownRotation, MaxUpRotation);
+
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }
 

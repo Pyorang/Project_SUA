@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class SteeringWheelController : MonoBehaviour
 {
-    public float maxTurnAngle = 60f;
-    public float turnSpeed = 4.0f;
-    private float currentTurnAngle = 0f;
+    [Header("Steering Wheel Sensitivity Settings")]
+    
+    public float maxTurnAngle = 135f;
+    public float turnSpeed = 20.0f;
 
+    [Header("Steering Wheel Transform")]
+    
     [SerializeField] Transform steeringWheel;
+
+    private float currentTurnAngle = 0f;
 
     public void UpdateSteeringWheel(float Input)
     {

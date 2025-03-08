@@ -1,39 +1,37 @@
 using UnityEngine;
 
-public enum LeftRIghtSignal
-{
-    Left = -1,
-    Middle = 0,
-    Right = 1
-}
-
 public class LightController : MonoBehaviour
 {
-    private LeftRIghtSignal leftRightSignal = LeftRIghtSignal.Middle;
+    public static readonly int LightIntensity = 1000;
 
-    public void ChangeLeftRightSignal(LeftRIghtSignal Input)
+    [Header("Lights Transform")]
+
+    [SerializeField] private Light FrontLeftLamp;
+    [SerializeField] private Light FrontRightLamp;
+    [SerializeField] private Light RearLeftLamp;
+    [SerializeField] private Light RearRightLamp;
+
+    private bool currentLigthOn = false;
+
+    public void Awake()
     {
-        switch(Input)
-        {
-            case LeftRIghtSignal.Left:
-                leftRightSignal = LeftRIghtSignal.Left;
-                Debug.Log("¿ÞÂÊ ÄÑÁü");
-                break;
-            case LeftRIghtSignal.Middle:
-                leftRightSignal = LeftRIghtSignal.Middle;
-                Debug.Log("¹æÇâ Áö½Ãµî ²¨Áü");
-                break;
-            case LeftRIghtSignal.Right:
-                leftRightSignal = LeftRIghtSignal.Right;
-                Debug.Log("¿À¸¥ÂÊ ÄÑÁü");
-                break;
-            default:
-                break;
-        }
+        RearLeftLamp.intensity = LightIntensity;
+        RearRightLamp.intensity = LightIntensity;
     }
 
-    public void ChangeEmergencyLights()
+    public void ChangeFrontLightState()
     {
-        Debug.Log("ºñ»óµî »óÅÂ ¹Ù²ñ");
+        if (currentLigthOn)
+            ChangeFrontLightIntensity(1000);
+        else
+            ChangeFrontLightIntensity(0);
+
+        currentLigthOn = !currentLigthOn;
+    }
+
+    public void ChangeFrontLightIntensity(int Intensity)
+    {
+        FrontLeftLamp.intensity = Intensity;
+        FrontLeftLamp.intensity = Intensity;
     }
 }

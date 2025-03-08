@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 
 public class VehicleController : MonoBehaviour
 {
+    [Header("Controllers")]
+    [Space]
 
-    [SerializeField] private LightController lightController;
     [SerializeField] private WheelController wheelController;
     [SerializeField] private SteeringWheelController steeringWheelController;
+    [SerializeField] private LightController lightController;
 
     #region Gears
     private Gear D, N, R, P;
@@ -27,7 +29,6 @@ public class VehicleController : MonoBehaviour
     {
         AllocateInputActions();
         InitGears();
-        wheelController.ApplyBreakForce(false);  // 처음 사이드 브레이크 작동
     }
 
     private void OnEnable()
@@ -104,9 +105,9 @@ public class VehicleController : MonoBehaviour
         return moveLeftRightAction.ReadValue<float>();
     }
 
-    public bool GetBreak()
+    public float GetBreak()
     {
-        return breakAction.phase == InputActionPhase.Performed;
+        return breakAction.ReadValue<float>();
     }
 
     public void GetLightControl(InputAction.CallbackContext context)
@@ -115,17 +116,11 @@ public class VehicleController : MonoBehaviour
         
         switch(control.name)
         {
-            case "j":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Left);
-                break;
-            case "k":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Middle);
-                break;
             case "l":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Right);
+                lightController.ChangeFrontLightState();
                 break;
-            case "r":
-                lightController.ChangeEmergencyLights();
+            case "button4":
+                lightController.ChangeFrontLightState();
                 break;
             default:
                 break;

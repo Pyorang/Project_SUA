@@ -6,30 +6,47 @@ using UnityEngine.UIElements;
 
 public class WheelController : MonoBehaviour
 {
-    //각도 Lerp 이용하기
+    [Header("Wheel Colliders")]
+    
+    [Space]
 
     [SerializeField] WheelCollider frontLeft;
     [SerializeField] WheelCollider frontRight;
+    
+    [Space]
+
     [SerializeField] WheelCollider backLeft;
     [SerializeField] WheelCollider backRight;
 
+    [Header("Wheel Transforms")]
+
+    [Space]
+
     [SerializeField] Transform frontLeftTransform;
     [SerializeField] Transform frontRightTransform;
+    
+    [Space]
+
     [SerializeField] Transform backLeftTransform;
     [SerializeField] Transform backRightTransform;
 
-    public bool sideBreakOn = true;
+    [Header("Car Settings")]
+    
+    [Space]
 
-    public float acceleration = 500f;
-    public float breakingForce = 500f;
-    public float maxTurnAngle = 15f;
+    [SerializeField] private float acceleration = 500f;
+    [SerializeField] private float breakingForce = 500f;
+    [SerializeField] private float maxTurnAngle = 15f;
 
+    private bool sideBreakOn = true;
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
 
     public void ApplyAcceleration(float Input)
     {
+        if (Input < 0)
+            Input = 0;
         currentAcceleration = acceleration * Input;
         ChangeFrontWheelsMotorTorque();
     }
@@ -46,17 +63,15 @@ public class WheelController : MonoBehaviour
         sideBreakOn = !sideBreakOn;
     }
 
-    public void  ApplyBreakForce(bool Input)
+    public void  ApplyBreakForce(float Input)
     {
-        if(sideBreakOn || Input)
-        {
+        if (Input < 0)
+            Input = 0;
+
+        currentBreakForce = breakingForce * Input;
+        
+        if(sideBreakOn)
             currentBreakForce = breakingForce;
-        }
-        else
-        {
-            if (!Input)
-                currentBreakForce = 0f;
-        }
 
         ChangeAllWheelsBreakTorque();
     }
