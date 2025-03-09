@@ -31,86 +31,81 @@ public class WheelController : MonoBehaviour
     [SerializeField] Transform backRightTransform;
 
     [Header("Car Settings")]
-    
+
     [Space]
 
+    [SerializeField] private float defaultAcceleration = 300f;
     [SerializeField] private float acceleration = 500f;
     [SerializeField] private float breakingForce = 500f;
     [SerializeField] private float maxTurnAngle = 15f;
 
     private bool sideBreakOn = true;
     private float currentAcceleration = 0f;
-    private float currentBreakForce = 0f;
+    private float currentBrakingForce = 0f;
     private float currentTurnAngle = 0f;
+    private static readonly float noAccelerateMaxSpeed = 10f;
 
-    public void ApplyAcceleration(float Input)
+    private Rigidbody rb;
+
+    private void Awake()
     {
-        if (Input < 0)
-            Input = 0;
-        currentAcceleration = acceleration * Input;
-        ChangeFrontWheelsMotorTorque();
+        rb = GetComponent<Rigidbody>();
     }
 
-    public void ApplyWheelTurnAngle(float Input)
+    public void ApplyAcceleration(float input, bool reverse)
     {
-        currentTurnAngle = maxTurnAngle * Input;
-        ChangeFrontWheelsSteerAngle();
-        UpdateAllWheelsTrnasform();
+        input = Mathf.Max(0, input);
+
+        currentAcceleration = acceleration * input;
+
+        if (input == 0 && (rb.velocity.magnitude * 3.6f < noAccelerateMaxSpeed))
+        {
+            currentAcceleration = defaultAcceleration;
+            Debug.Log("HI");
+        }
+
+        if (reverse)
+            currentAcceleration = -currentAcceleration;
+
+        UpdateMotorTorque();
     }
 
-    public void ApplySideBreak()
+    public void ApplyWheelTurnAngle(float input)
+    {
+        currentTurnAngle = maxTurnAngle * input;
+        UpdateSteerAngle();
+    }
+
+    public void ToggleSideBrake()
     {
         sideBreakOn = !sideBreakOn;
     }
 
-    public void  ApplyBreakForce(float Input)
+    public void ApplyBrakeForce(float input)
     {
-        if (Input < 0)
-            Input = 0;
+        currentBrakingForce = breakingForce * Mathf.Max(0, input);
+        if (sideBreakOn) currentBrakingForce = breakingForce;
 
-        currentBreakForce = breakingForce * Input;
-        
-        if(sideBreakOn)
-            currentBreakForce = breakingForce;
-
-        ChangeAllWheelsBreakTorque();
+        UpdateBrakingTorque();
     }
 
-    private void ChangeFrontWheelsMotorTorque()
+    private void UpdateMotorTorque()
     {
         frontLeft.motorTorque = currentAcceleration;
         frontRight.motorTorque = currentAcceleration;
     }
 
-    public void ChangeFrontWheelsSteerAngle()
+    private void UpdateSteerAngle()
     {
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
     }
 
-    public void UpdateAllWheelsTrnasform()
+    private void UpdateBrakingTorque()
     {
-        UpdateWheelTransform(frontLeft, frontLeftTransform);
-        UpdateWheelTransform(frontRight, frontRightTransform);
-        UpdateWheelTransform(backLeft, backLeftTransform);
-        UpdateWheelTransform(backRight, backRightTransform);
-    }
-
-    public void UpdateWheelTransform(WheelCollider col, Transform trans)
-    {
-        /*Vector3 position;
-        Quaternion rotation;
-        col.GetWorldPose(out position, out rotation);
-
-        trans.position = position;
-        trans.rotation = rotation;*/
-    }
-
-    private void ChangeAllWheelsBreakTorque()
-    {
-        frontLeft.brakeTorque = currentBreakForce;
-        frontRight.brakeTorque = currentBreakForce;
-        backLeft.brakeTorque = currentBreakForce;
-        backRight.brakeTorque = currentBreakForce;
+        frontLeft.brakeTorque = currentBrakingForce;
+        frontRight.brakeTorque = currentBrakingForce;
+        backLeft.brakeTorque = currentBrakingForce;
+        backRight.brakeTorque = currentBrakingForce;
     }
 }

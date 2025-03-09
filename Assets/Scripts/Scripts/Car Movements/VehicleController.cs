@@ -134,10 +134,10 @@ public class VehicleController : MonoBehaviour
         switch (control.name)
         {
             case "0":
-                wheelController.ApplySideBreak();
+                wheelController.ToggleSideBrake();
                 break;
             case "button16":
-                wheelController.ApplySideBreak();
+                wheelController.ToggleSideBrake();
                 break;
             default:
                 Debug.Log("Unknown input : " + control.name);

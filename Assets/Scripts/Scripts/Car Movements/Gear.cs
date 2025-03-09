@@ -8,90 +8,76 @@ public enum GearType
     ParkingGear = 4
 }
 
-public interface Gear
+public class Gear
 {
-    public void Drive();
+    public GearType gear;
+    public VehicleController vehicleController;
+
+    public virtual void Drive()
+    {
+        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
+        vehicleController.GetWheelController().ApplyBrakeForce(vehicleController.GetBreak());
+        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+    }
 }
 
 public class DriveGear : Gear
 {
-    public const float defaultSpeed = 1f;
-    public GearType gear = GearType.DriveGear;
-    public VehicleController vehicleController;
-
     public DriveGear(VehicleController vehicleController)
     {
+        gear = GearType.DriveGear;
         this.vehicleController = vehicleController;
     }
 
-    public void Drive()
+    public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate());
-        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-        vehicleController.GetWheelController().ApplyBreakForce(vehicleController.GetBreak());
-
-        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate(),false);
+        base.Drive();
     }
 }
 
 public class NeutralGear : Gear
 {
-    public GearType gear = GearType.NeutralGear;
-    public VehicleController vehicleController;
-
     public NeutralGear(VehicleController vehicleController)
     {
+        gear = GearType.NeutralGear;
         this.vehicleController = vehicleController;
     }
 
-    public void Drive()
+    public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(0f);
-        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-        vehicleController.GetWheelController().ApplyBreakForce(vehicleController.GetBreak());
-
-        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+        vehicleController.GetWheelController().ApplyAcceleration(0f,false);
+        base.Drive();
     }
 }
 
 public class ReverseGear : Gear
 {
-    public const float defaultSpeed = 100f;
-    public GearType gear = GearType.ReverseGear;
-    public VehicleController vehicleController;
-
     public ReverseGear(VehicleController vehicleController)
     {
+        gear = GearType.ReverseGear;
         this.vehicleController = vehicleController;
     }
 
-    public void Drive()
+    public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(-defaultSpeed-vehicleController.GetAccelerate());
-        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-        vehicleController.GetWheelController().ApplyBreakForce(vehicleController.GetBreak());
-
-        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate(),true);
+        base.Drive();
 
     }
 }
 
 public class ParkingGear : Gear
 {
-    public const float defaultSpeed = 100f;
-    public GearType gear = GearType.ParkingGear;
-    public VehicleController vehicleController;
-
     public ParkingGear(VehicleController vehicleController)
     {
+        gear = GearType.ParkingGear;
         this.vehicleController = vehicleController;
     }
 
-    public void Drive() 
+    public override void Drive() 
     {
-        vehicleController.GetWheelController().ApplyAcceleration(0f);
-        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-
-        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+        vehicleController.GetWheelController().ApplyAcceleration(0f,false);
+        base.Drive();
     }
 }
