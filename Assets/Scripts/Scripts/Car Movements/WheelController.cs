@@ -38,34 +38,36 @@ public class WheelController : MonoBehaviour
     [SerializeField] private float acceleration = 500f;
     [SerializeField] private float breakingForce = 500f;
     [SerializeField] private float maxTurnAngle = 15f;
+    [SerializeField] private float noAccelerateMaxSpeed = 10f;
 
     private bool sideBreakOn = true;
     private float currentAcceleration = 0f;
     private float currentBrakingForce = 0f;
     private float currentTurnAngle = 0f;
-    private static readonly float noAccelerateMaxSpeed = 10f;
 
-    private Rigidbody rb;
+    [Header("Car RigidBody")]
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    [Space]
+
+    [SerializeField] private Rigidbody CarBodyRb;
 
     public void ApplyAcceleration(float input, bool reverse)
     {
-        input = Mathf.Max(0, input);
+        float appliedInput = Mathf.Clamp01(input);
 
-        currentAcceleration = acceleration * input;
+        currentAcceleration = acceleration * appliedInput;
 
-        if (input == 0 && (rb.velocity.magnitude * 3.6f < noAccelerateMaxSpeed))
+        bool isLowSpeed = CarBodyRb.linearVelocity.magnitude * 3.6f < noAccelerateMaxSpeed;
+        if (appliedInput == 0 && isLowSpeed)
         {
             currentAcceleration = defaultAcceleration;
-            Debug.Log("HI");
+            Debug.Log("Applying default acceleration due to low speed.");
         }
 
         if (reverse)
+        {
             currentAcceleration = -currentAcceleration;
+        }
 
         UpdateMotorTorque();
     }

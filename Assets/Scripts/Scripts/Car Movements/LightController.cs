@@ -22,7 +22,7 @@ public class LightController : MonoBehaviour
     public void ChangeFrontLightState()
     {
         if (currentLigthOn)
-            ChangeFrontLightIntensity(1000);
+            ChangeFrontLightIntensity(LightIntensitys);
         else
             ChangeFrontLightIntensity(0);
 

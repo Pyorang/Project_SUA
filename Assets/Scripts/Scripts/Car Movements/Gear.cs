@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum GearType
@@ -18,6 +19,11 @@ public class Gear
         vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
         vehicleController.GetWheelController().ApplyBrakeForce(vehicleController.GetBreak());
         vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+    }
+
+    public static implicit operator Gear(string v)
+    {
+        throw new NotImplementedException();
     }
 }
 
@@ -63,7 +69,6 @@ public class ReverseGear : Gear
     {
         vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate(),true);
         base.Drive();
-
     }
 }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -147,45 +148,22 @@ public class VehicleController : MonoBehaviour
 
     public void GetGearChangeControl(InputAction.CallbackContext context)
     {
-        var control = context.control;
-
-        switch (control.name)
+        Dictionary<string, string> gearMapping = new Dictionary<string, string>
         {
-            case "1":
-                currentGear = D;
-                Debug.Log("D");
-                break;
-            case "2":
-                currentGear = N;
-                Debug.Log("N");
-                break;
-            case "3":
-                currentGear = R;
-                Debug.Log("R");
-                break;
-            case "4":
-                currentGear = P;
-                Debug.Log("P");
-                break;
-            case "button17":
-                currentGear = D;
-                Debug.Log("D");
-                break;
-            case "button18":
-                currentGear = N;
-                Debug.Log("N");
-                break;
-            case "button21":
-                currentGear = R;
-                Debug.Log("R");
-                break;
-            case "button22":
-                currentGear = P;
-                Debug.Log("P");
-                break;
-            default:
-                Debug.Log("Unknown input : " + control.name);
-                break;
+            { "1", "D" }, { "2", "N" }, { "3", "R" }, { "4", "P" },
+            { "button17", "D" }, { "button18", "N" }, { "button21", "R" }, { "button22", "P" }
+        };
+
+        string controlName = context.control.name;
+
+        if (gearMapping.TryGetValue(controlName, out string gear))
+        {
+            currentGear = gear;
+            Debug.Log(gear);
+        }
+        else
+        {
+            Debug.Log($"Unknown input: {controlName}");
         }
     }
 }
