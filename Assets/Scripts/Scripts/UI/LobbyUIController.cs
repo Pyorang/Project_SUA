@@ -16,7 +16,7 @@ public class LobbyUIController : MonoBehaviour
     public void OnClickPlayButton()
     {
         var uiData = new BaseUIData();
-        UIManager.Instance.OpenUI<MapSelectionUI>(uiData);
+        UIManager.Instance.OpenUI<ControlSelectionUI>(uiData);
     }
 
     public void GuideButton()

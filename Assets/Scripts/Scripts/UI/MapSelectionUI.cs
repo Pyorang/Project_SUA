@@ -8,3 +8,4 @@ public class MapSelectionUI : BaseUI
         base.Init(canvas);
     }
 }
+
