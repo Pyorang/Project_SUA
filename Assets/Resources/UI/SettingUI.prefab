@@ -867,6 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimOnOpen: {fileID: 0}
   slider: {fileID: 6065203572472664524}
+  SFXButtonText: {fileID: 8687460195592212499}
 --- !u!1 &5510161850522549005
 GameObject:
   m_ObjectHideFlags: 0
