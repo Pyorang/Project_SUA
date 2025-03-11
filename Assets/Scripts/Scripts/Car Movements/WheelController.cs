@@ -6,96 +6,108 @@ using UnityEngine.UIElements;
 
 public class WheelController : MonoBehaviour
 {
-    //각도 Lerp 이용하기
+    [Header("Wheel Colliders")]
+    
+    [Space]
 
     [SerializeField] WheelCollider frontLeft;
     [SerializeField] WheelCollider frontRight;
+    
+    [Space]
+
     [SerializeField] WheelCollider backLeft;
     [SerializeField] WheelCollider backRight;
 
+    [Header("Wheel Transforms")]
+
+    [Space]
+
     [SerializeField] Transform frontLeftTransform;
     [SerializeField] Transform frontRightTransform;
+    
+    [Space]
+
     [SerializeField] Transform backLeftTransform;
     [SerializeField] Transform backRightTransform;
 
-    public bool sideBreakOn = true;
+    [Header("Car Settings")]
 
-    public float acceleration = 500f;
-    public float breakingForce = 500f;
-    public float maxTurnAngle = 15f;
+    [Space]
 
+    [SerializeField] private float defaultAcceleration = 300f;
+    [SerializeField] private float acceleration = 500f;
+    [SerializeField] private float breakingForce = 500f;
+    [SerializeField] private float maxTurnAngle = 15f;
+    [SerializeField] private float noAccelerateMaxSpeed = 10f;
+
+    private bool sideBreakOn = true;
     private float currentAcceleration = 0f;
-    private float currentBreakForce = 0f;
+    private float currentBrakingForce = 0f;
     private float currentTurnAngle = 0f;
 
-    public void ApplyAcceleration(float Input)
+    [Header("Car RigidBody")]
+
+    [Space]
+
+    [SerializeField] private Rigidbody CarBodyRb;
+
+    public void ApplyAcceleration(float input, bool reverse)
     {
-        currentAcceleration = acceleration * Input;
-        ChangeFrontWheelsMotorTorque();
+        float appliedInput = Mathf.Clamp01(input);
+
+        currentAcceleration = acceleration * appliedInput;
+
+        bool isLowSpeed = CarBodyRb.linearVelocity.magnitude * 3.6f < noAccelerateMaxSpeed;
+        if (appliedInput == 0 && isLowSpeed)
+        {
+            currentAcceleration = defaultAcceleration;
+            Debug.Log("Applying default acceleration due to low speed.");
+        }
+
+        if (reverse)
+        {
+            currentAcceleration = -currentAcceleration;
+        }
+
+        UpdateMotorTorque();
     }
 
-    public void ApplyWheelTurnAngle(float Input)
+    public void ApplyWheelTurnAngle(float input)
     {
-        currentTurnAngle = maxTurnAngle * Input;
-        ChangeFrontWheelsSteerAngle();
-        UpdateAllWheelsTrnasform();
+        currentTurnAngle = maxTurnAngle * input;
+        UpdateSteerAngle();
     }
 
-    public void ApplySideBreak()
+    public void ToggleSideBrake()
     {
         sideBreakOn = !sideBreakOn;
     }
 
-    public void  ApplyBreakForce(bool Input)
+    public void ApplyBrakeForce(float input)
     {
-        if(sideBreakOn || Input)
-        {
-            currentBreakForce = breakingForce;
-        }
-        else
-        {
-            if (!Input)
-                currentBreakForce = 0f;
-        }
+        currentBrakingForce = breakingForce * Mathf.Max(0, input);
+        if (sideBreakOn) currentBrakingForce = breakingForce;
 
-        ChangeAllWheelsBreakTorque();
+        UpdateBrakingTorque();
     }
 
-    private void ChangeFrontWheelsMotorTorque()
+    private void UpdateMotorTorque()
     {
         frontLeft.motorTorque = currentAcceleration;
         frontRight.motorTorque = currentAcceleration;
     }
 
-    public void ChangeFrontWheelsSteerAngle()
+    private void UpdateSteerAngle()
     {
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
     }
 
-    public void UpdateAllWheelsTrnasform()
+    private void UpdateBrakingTorque()
     {
-        UpdateWheelTransform(frontLeft, frontLeftTransform);
-        UpdateWheelTransform(frontRight, frontRightTransform);
-        UpdateWheelTransform(backLeft, backLeftTransform);
-        UpdateWheelTransform(backRight, backRightTransform);
-    }
-
-    public void UpdateWheelTransform(WheelCollider col, Transform trans)
-    {
-        /*Vector3 position;
-        Quaternion rotation;
-        col.GetWorldPose(out position, out rotation);
-
-        trans.position = position;
-        trans.rotation = rotation;*/
-    }
-
-    private void ChangeAllWheelsBreakTorque()
-    {
-        frontLeft.brakeTorque = currentBreakForce;
-        frontRight.brakeTorque = currentBreakForce;
-        backLeft.brakeTorque = currentBreakForce;
-        backRight.brakeTorque = currentBreakForce;
+        frontLeft.brakeTorque = currentBrakingForce;
+        frontRight.brakeTorque = currentBrakingForce;
+        backLeft.brakeTorque = currentBrakingForce;
+        backRight.brakeTorque = currentBrakingForce;
     }
 }

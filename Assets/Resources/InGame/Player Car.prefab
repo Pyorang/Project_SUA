@@ -56,10 +56,11 @@ MonoBehaviour:
   frontRightTransform: {fileID: 2067459172918969581}
   backLeftTransform: {fileID: 5723055076300012613}
   backRightTransform: {fileID: 1613568466526459271}
-  sideBreakOn: 1
+  defaultAcceleration: 300
   acceleration: 500
   breakingForce: 300
   maxTurnAngle: 15
+  CarBodyRb: {fileID: 1700865776685490970}
 --- !u!1 &122616104588405046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1548,7 @@ GameObject:
   - component: {fileID: 4972322713723205907}
   - component: {fileID: 5817280763295795200}
   - component: {fileID: 2472784618536937146}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: headlight-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1564,7 @@ Transform:
   m_GameObject: {fileID: 2792878016243611743}
   serializedVersion: 2
   m_LocalRotation: {x: 0.024344053, y: -0, z: -0, w: 0.9997037}
-  m_LocalPosition: {x: -1.941, y: 0.6415987, z: 9.121033}
+  m_LocalPosition: {x: -1.941, y: 0, z: 9.121033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1961,8 +1962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573f201bec814004f9f637ad288d9c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurnAngle: 60
-  turnSpeed: 1.5
+  maxTurnAngle: 135
+  turnSpeed: 20
   steeringWheel: {fileID: 4999506040577429296}
 --- !u!1 &3576555299330959329
 GameObject:
@@ -2525,7 +2526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 0
+  clearColorMode: 2
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
   volumeLayerMask:
@@ -2930,7 +2931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 0
+  clearColorMode: 2
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
   volumeLayerMask:
@@ -3070,6 +3071,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
+  MaxLeftRotation: -30
+  MaxRightRotation: 30
+  MaxUpRotation: 95
+  MaxDownRotation: -30
 --- !u!1 &4532171512063257957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 0
+  clearColorMode: 2
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
   volumeLayerMask:
@@ -3351,7 +3356,7 @@ GameObject:
   - component: {fileID: 7420988895247099575}
   - component: {fileID: 8950361310658478354}
   - component: {fileID: 7385093804506655241}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: brake-light-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3367,7 +3372,7 @@ Transform:
   m_GameObject: {fileID: 4739857214340229605}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.306, y: 0.020299911, z: 4.25}
+  m_LocalPosition: {x: -3.2, y: 0.15, z: 4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3763,7 +3768,7 @@ GameObject:
   - component: {fileID: 7808441994712456037}
   - component: {fileID: 7354491894152262223}
   - component: {fileID: 8355221629047691237}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: headlight-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3779,7 +3784,7 @@ Transform:
   m_GameObject: {fileID: 5086266653845218962}
   serializedVersion: 2
   m_LocalRotation: {x: 0.024344053, y: -0, z: -0, w: 0.9997037}
-  m_LocalPosition: {x: -3.1790009, y: 0.585001, z: 9.140968}
+  m_LocalPosition: {x: -3.1790009, y: 0, z: 9.140968}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3837,7 +3842,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 1, y: 1}
+  m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
@@ -4175,7 +4180,7 @@ GameObject:
   - component: {fileID: 4043067682798135661}
   - component: {fileID: 2860933750554598591}
   - component: {fileID: 8188595422211928958}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: brake-light-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4191,7 +4196,7 @@ Transform:
   m_GameObject: {fileID: 5788080921918067564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.769, y: 0.020299911, z: 4.225}
+  m_LocalPosition: {x: -2, y: 0.15, z: 4.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4548,9 +4553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4afb032da98b7147ae28d2cbed96fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightController: {fileID: 3256615541588777978}
   wheelController: {fileID: 6577267161953093051}
   steeringWheelController: {fileID: 4482277698427197135}
+  lightController: {fileID: 3256615541588777978}
 --- !u!95 &3838855401538995428
 Animator:
   serializedVersion: 7
@@ -4975,7 +4980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8530889663072110196}
   - component: {fileID: 3256615541588777978}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5013,6 +5018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0a386f6976ca0468a9ab386d0e814e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FrontLeftLamp: {fileID: 7354491894152262223}
+  FrontRightLamp: {fileID: 5817280763295795200}
+  RearLeftLamp: {fileID: 2860933750554598591}
+  RearRightLamp: {fileID: 8950361310658478354}
 --- !u!1 &6636102033672599763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,7 +5446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 0
+  clearColorMode: 2
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
   volumeLayerMask:

@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class VehicleController : MonoBehaviour
 {
+    [Header("Controllers")]
+    [Space]
 
-    [SerializeField] private LightController lightController;
     [SerializeField] private WheelController wheelController;
     [SerializeField] private SteeringWheelController steeringWheelController;
+    [SerializeField] private LightController lightController;
 
     #region Gears
     private Gear D, N, R, P;
@@ -27,7 +30,6 @@ public class VehicleController : MonoBehaviour
     {
         AllocateInputActions();
         InitGears();
-        wheelController.ApplyBreakForce(false);  // 처음 사이드 브레이크 작동
     }
 
     private void OnEnable()
@@ -104,9 +106,9 @@ public class VehicleController : MonoBehaviour
         return moveLeftRightAction.ReadValue<float>();
     }
 
-    public bool GetBreak()
+    public float GetBreak()
     {
-        return breakAction.phase == InputActionPhase.Performed;
+        return breakAction.ReadValue<float>();
     }
 
     public void GetLightControl(InputAction.CallbackContext context)
@@ -115,17 +117,11 @@ public class VehicleController : MonoBehaviour
         
         switch(control.name)
         {
-            case "j":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Left);
-                break;
-            case "k":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Middle);
-                break;
             case "l":
-                lightController.ChangeLeftRightSignal(LeftRIghtSignal.Right);
+                lightController.ChangeFrontLightState();
                 break;
-            case "r":
-                lightController.ChangeEmergencyLights();
+            case "button4":
+                lightController.ChangeFrontLightState();
                 break;
             default:
                 break;
@@ -139,37 +135,35 @@ public class VehicleController : MonoBehaviour
         switch (control.name)
         {
             case "0":
-                wheelController.ApplySideBreak();
+                wheelController.ToggleSideBrake();
+                break;
+            case "button16":
+                wheelController.ToggleSideBrake();
                 break;
             default:
+                Debug.Log("Unknown input : " + control.name);
                 break;
         }
     }
 
     public void GetGearChangeControl(InputAction.CallbackContext context)
     {
-        var control = context.control;
-
-        switch (control.name)
+        Dictionary<string, string> gearMapping = new Dictionary<string, string>
         {
-            case "1":
-                currentGear = D;
-                Debug.Log("D");
-                break;
-            case "2":
-                currentGear = N;
-                Debug.Log("N");
-                break;
-            case "3":
-                currentGear = R;
-                Debug.Log("R");
-                break;
-            case "4":
-                currentGear = P;
-                Debug.Log("P");
-                break;
-            default:
-                break;
+            { "1", "D" }, { "2", "N" }, { "3", "R" }, { "4", "P" },
+            { "button17", "D" }, { "button18", "N" }, { "button21", "R" }, { "button22", "P" }
+        };
+
+        string controlName = context.control.name;
+
+        if (gearMapping.TryGetValue(controlName, out string gear))
+        {
+            currentGear = gear;
+            Debug.Log(gear);
+        }
+        else
+        {
+            Debug.Log($"Unknown input: {controlName}");
         }
     }
 }
