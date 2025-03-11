@@ -25,7 +25,7 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SaveUserData();
         }
 
-        // AudioManager.Instance.SyncUserSettings();
+        AudioManager.Instance.SyncUserSettings();
 
         StartCoroutine(LoadingSequence());
     }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UserOptionData : IUserData
+public class UserSettingData : IUserData
 {
     public bool IsBGMEnable { get; set; }
     public bool IsSFXEnable { get; set; }

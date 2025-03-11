@@ -7,10 +7,10 @@ public class LobbyUIController : MonoBehaviour
         //
     }
 
-    public void OnClickOptionButton()
+    public void OnClickSettingButton()
     {
         var uiData = new BaseUIData();
-        UIManager.Instance.OpenUI<OptionUI>(uiData);
+        UIManager.Instance.OpenUI<SettingUI>(uiData);
     }
 
     public void OnClickPlayButton()

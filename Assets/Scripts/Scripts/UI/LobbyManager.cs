@@ -17,10 +17,9 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
     {
         LobbyUIController = FindAnyObjectByType<LobbyUIController>();
 
-        if(LobbyUIController == null)
+        if(LobbyUIController != null)
         {
-            Debug.Log("LobbyUIController does not exist.");
-
+            AudioManager.Instance.Play(AudioType.BGM, "Lobby");
             return;
         }
 

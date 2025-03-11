@@ -66,6 +66,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 
         _frontUI = ui;
         _openUIPool[uiType] = ui;
+
+        AudioManager.Instance.Play(AudioType.SFX, "ButtonClick");
     }
 
     public void CloseUI(BaseUI ui)
@@ -83,6 +85,8 @@ public class UIManager : SingletonBehaviour<UIManager>
         {
             _frontUI = lastChild.GetComponent<BaseUI>();
         }
+
+        AudioManager.Instance.Play(AudioType.SFX, "ButtonClick");
     }
 
     public BaseUI GetActiveUI<T>() where T : BaseUI
