@@ -292,7 +292,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Steering Wheel"",
+                    ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""LookLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -303,7 +303,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Steering Wheel"",
+                    ""groups"": "";Keyboard & Mouse"",
                     ""action"": ""LookLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true

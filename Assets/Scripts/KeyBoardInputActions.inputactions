@@ -206,7 +206,7 @@
                     "path": "<Mouse>/delta/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
+                    "groups": ";Keyboard & Mouse",
                     "action": "LookLeftRight",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -217,7 +217,7 @@
                     "path": "<Mouse>/delta/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse;Steering Wheel",
+                    "groups": ";Keyboard & Mouse",
                     "action": "LookLeftRight",
                     "isComposite": false,
                     "isPartOfComposite": true
