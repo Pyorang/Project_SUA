@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4b95069-0997-496e-ba4a-bdf8979ebf24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Project_SUA/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ).meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/AImove.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/AImove.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/NavMesh-Plane.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/NavMesh-Plane.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/NavMesh-Terrain.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/NavMesh-Terrain.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/New Material.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/WorkSpace (AYJ)/Map 1/New Material.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scripts/Car Movements/LightController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scripts/Car Movements/LightController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project_SUA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project_SUA/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ingame 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Ingame 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
@@ -121,6 +108,7 @@
       <workItem from="1741087529057" duration="627000" />
       <workItem from="1741088806120" duration="2955000" />
       <workItem from="1741687547309" duration="3856000" />
+      <workItem from="1742691327282" duration="1471000" />
     </task>
     <servers />
   </component>
