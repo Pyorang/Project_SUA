@@ -19,9 +19,15 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.OpenUI<ControlSelectionUI>(uiData);
     }
 
-    public void GuideButton()
+    public void OnClickGuideButton()
     {
         // ¾À º¯°æ
+    }
+
+    public void OnClickRankingButton()
+    {
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<RankingUI>(uiData);
     }
 
     public void OnClickExitButton()
