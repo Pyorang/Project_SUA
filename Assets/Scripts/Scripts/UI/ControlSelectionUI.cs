@@ -10,7 +10,7 @@ public class ControlSelectionUI : BaseUI
 
     public void OnClickControlSelectionButton()
     {
-        var uiData = new BaseUIData();
-        UIManager.Instance.OpenUI<MapSelectionUI>(uiData);
+        var loadingOperation = SceneLoader.Instance.LoadSceneAsync(ESceneType.Ingame);
+        this.Close();
     }
 }
