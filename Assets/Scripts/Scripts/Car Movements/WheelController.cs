@@ -61,7 +61,7 @@ public class WheelController : MonoBehaviour
         if (appliedInput == 0 && isLowSpeed)
         {
             currentAcceleration = defaultAcceleration;
-            Debug.Log("Applying default acceleration due to low speed.");
+            // Debug.Log("Applying default acceleration due to low speed.");
         }
 
         if (reverse)

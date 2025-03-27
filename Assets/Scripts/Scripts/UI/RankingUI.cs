@@ -6,4 +6,10 @@ public class RankingUI : BaseUI
     {
         base.Init(canvas);
     }
+
+    public void OnClickSettingButton()
+    {
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<SettingUI>(uiData);
+    }
 }
