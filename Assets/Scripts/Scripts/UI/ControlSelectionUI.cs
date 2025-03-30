@@ -8,7 +8,13 @@ public class ControlSelectionUI : BaseUI
         base.Init(canvas);
     }
 
-    public void OnClickControlSelectionButton()
+    public void OnClickKeyBoardMouseButton()
+    {
+        var loadingOperation = SceneLoader.Instance.LoadSceneAsync(ESceneType.Ingame);
+        this.Close();
+    }
+
+    public void OnClickSteeringWheelButton()
     {
         var loadingOperation = SceneLoader.Instance.LoadSceneAsync(ESceneType.Ingame);
         this.Close();

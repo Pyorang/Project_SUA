@@ -19,9 +19,7 @@ public class SteeringWheelController : MonoBehaviour
 
         float targetTurnAngle = maxTurnAngle * Input;
 
-        currentTurnAngle = Mathf.Lerp(currentTurnAngle, targetTurnAngle, Time.deltaTime * turnSpeed);
-
-        rotation.z = -currentTurnAngle;
+        rotation.z = -targetTurnAngle;
         steeringWheel.localRotation = Quaternion.Euler(rotation);
     }
 }

@@ -41,26 +41,6 @@ public class CameraMove : MonoBehaviour
         lookLeftRightAction.Disable();
     }
 
-    void Update()
-    {
-        UpdateCameraMove();
-    }
-
-    private void UpdateCameraMove()
-    {
-        float xMove = lookLeftRightAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
-        float yMove = lookUpDonwAction.ReadValue<float>() * rotationSpeed * Time.deltaTime;
-
-        yRotation += xMove;
-        xRotation -= yMove;
-
-        xRotation = Mathf.Clamp(xRotation, MaxLeftRotation, MaxRightRotation);
-
-        yRotation = Mathf.Clamp(yRotation, MaxDownRotation, MaxUpRotation);
-
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
-    }
-
     private void CursorLock()
     {
         Cursor.lockState = CursorLockMode.Locked;

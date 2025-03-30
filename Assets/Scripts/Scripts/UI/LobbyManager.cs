@@ -8,7 +8,7 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
 
     protected override void Init()
     {
-        IsDestroyOnLoad = false;
+        IsDestroyOnLoad = true;
 
         base.Init();
     }
