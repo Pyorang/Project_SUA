@@ -1875,14 +1875,13 @@ GameObject:
   - component: {fileID: 4999506040577429296}
   - component: {fileID: 3146265262780685211}
   - component: {fileID: 8510017297388455512}
-  - component: {fileID: 4482277698427197135}
   m_Layer: 0
   m_Name: steering-wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4999506040577429296
 Transform:
   m_ObjectHideFlags: 0
@@ -1951,21 +1950,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4482277698427197135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3557675107419143999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573f201bec814004f9f637ad288d9c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTurnAngle: 135
-  turnSpeed: 20
-  steeringWheel: {fileID: 4999506040577429296}
 --- !u!1 &3576555299330959329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2839,7 @@ Transform:
   m_GameObject: {fileID: 4488677404516188271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.501, y: 1.045, z: -0.489}
+  m_LocalPosition: {x: -0.501, y: 1.045, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4555,7 +4539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelController: {fileID: 6577267161953093051}
-  steeringWheelController: {fileID: 4482277698427197135}
+  steeringWheelController: {fileID: 0}
   lightController: {fileID: 3256615541588777978}
 --- !u!95 &3838855401538995428
 Animator:

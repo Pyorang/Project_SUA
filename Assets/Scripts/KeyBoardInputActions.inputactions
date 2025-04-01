@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Settings",
+                    "type": "Button",
+                    "id": "8e415243-3734-4de5-b841-69d9459d7326",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -450,6 +459,28 @@
                     "processors": "",
                     "groups": ";Steering Wheel",
                     "action": "SideBreak",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b3aa441-344e-4a08-8631-d32cff39fb2b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard & Mouse",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8a32929-5b11-4eff-9f30-0778923f3b9a",
+                    "path": "<HID::Wired Wheel>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Steering Wheel",
+                    "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -13,12 +13,17 @@ public class Gear
 {
     public GearType gear;
     public VehicleController vehicleController;
+    public WheelController wheelController;
+
+    public void SetControllers()
+    {
+        wheelController = vehicleController.GetWheelController();
+    }
 
     public virtual void Drive()
     {
-        vehicleController.GetWheelController().ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-        vehicleController.GetWheelController().ApplyBrakeForce(vehicleController.GetBreak());
-        vehicleController.GetSteeringWheelController().UpdateSteeringWheel(vehicleController.GetLeftRight());
+        wheelController.ApplyWheelTurnAngle(vehicleController.GetLeftRight());
+        wheelController.ApplyBrakeForce(vehicleController.GetBreak());
     }
 
     public static implicit operator Gear(string v)
@@ -33,11 +38,12 @@ public class DriveGear : Gear
     {
         gear = GearType.DriveGear;
         this.vehicleController = vehicleController;
+        SetControllers();
     }
 
     public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate(),false);
+        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(),false);
         base.Drive();
     }
 }
@@ -48,11 +54,12 @@ public class NeutralGear : Gear
     {
         gear = GearType.NeutralGear;
         this.vehicleController = vehicleController;
+        SetControllers();
     }
 
     public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(0f,false);
+        wheelController.ApplyAcceleration(0f,false);
         base.Drive();
     }
 }
@@ -63,11 +70,12 @@ public class ReverseGear : Gear
     {
         gear = GearType.ReverseGear;
         this.vehicleController = vehicleController;
+        SetControllers();
     }
 
     public override void Drive()
     {
-        vehicleController.GetWheelController().ApplyAcceleration(vehicleController.GetAccelerate(),true);
+        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(),true);
         base.Drive();
     }
 }
@@ -78,11 +86,12 @@ public class ParkingGear : Gear
     {
         gear = GearType.ParkingGear;
         this.vehicleController = vehicleController;
+        SetControllers();
     }
 
     public override void Drive() 
     {
-        vehicleController.GetWheelController().ApplyAcceleration(0f,false);
+        wheelController.ApplyAcceleration(0f,false);
         base.Drive();
     }
 }

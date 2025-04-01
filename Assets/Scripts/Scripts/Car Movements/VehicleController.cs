@@ -9,7 +9,6 @@ public class VehicleController : MonoBehaviour
     [Space]
 
     [SerializeField] private WheelController wheelController;
-    [SerializeField] private SteeringWheelController steeringWheelController;
     [SerializeField] private LightController lightController;
 
     #region Gears
@@ -48,7 +47,6 @@ public class VehicleController : MonoBehaviour
     }
 
     public WheelController GetWheelController() { return wheelController; }
-    public SteeringWheelController GetSteeringWheelController() { return steeringWheelController; } 
 
     void AllocateInputActions()
     {

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class IngameUIController : MonoBehaviour
 {
@@ -11,6 +12,29 @@ public class IngameUIController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timerText;
 
+    #region InputSystems
+    KeyBoardInputActions action;
+    InputAction escapeKeyAction;
+    #endregion
+
+
+    public void Awake()
+    {
+        AllocateEscapeActions();
+    }
+
+    private void OnEnable()
+    {
+        escapeKeyAction.Enable();
+        escapeKeyAction.performed += GetSettingButtonControl;
+    }
+
+    private void OnDisable()
+    {
+        escapeKeyAction.Disable();
+        escapeKeyAction.performed -= GetSettingButtonControl;
+    }
+
     public void Init()
     {
         //
@@ -19,6 +43,40 @@ public class IngameUIController : MonoBehaviour
     public void Update()
     {
         UpdateTimerTextUI();
+    }
+
+    private void HandleInput()
+    {
+        //AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
+
+        var frontUI = UIManager.Instance.GetFrontUI();
+        if (frontUI != null)
+        {
+           frontUI.Close();
+           Time.timeScale = 1f;
+        }
+        else
+        {
+           OnClickInGameSettingButton();
+        }
+    }
+
+    public void GetSettingButtonControl(InputAction.CallbackContext context)
+    {
+        var control = context.control;
+
+        switch (control.name)
+        {
+            case "escape":
+                HandleInput();
+                break;
+            case "button10":
+                HandleInput();
+                break;
+            default:
+                Debug.Log("Unknown input : " + control.name);
+                break;
+        }
     }
 
     public void UpdateTimerTextUI()
@@ -36,5 +94,17 @@ public class IngameUIController : MonoBehaviour
         }
 
         timerText.text = $"{currentTime_Minute:D2} : {currentTime_Second:D2} : {currentTime_centiSeconds:D2}";
+    }
+
+    public void OnClickInGameSettingButton()
+    {
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<InGameSettingUI>(uiData);
+    }
+
+    private void AllocateEscapeActions()
+    {
+        action = new KeyBoardInputActions();
+        escapeKeyAction = action.Car.Settings;
     }
 }

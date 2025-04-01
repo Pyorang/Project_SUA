@@ -26,7 +26,7 @@ public class CameraMove : MonoBehaviour
     private void Awake()
     {
         AllocateCameraActions();
-        CursorLock();
+        //CursorLock();
     }
 
     private void OnEnable()

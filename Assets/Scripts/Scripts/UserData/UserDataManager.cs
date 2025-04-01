@@ -15,7 +15,7 @@ public class UserDataManager : SingletonBehaviour<UserDataManager>
         ExistsSavedData = PlayerPrefs.GetInt(nameof(ExistsSavedData)) == 1;
 
         UserDataList.Add(new UserSettingData());
-        // UserDataList.Add(new UserRankingData());
+        UserDataList.Add(new UserRankingData());
     }
 
     public void SetDefaultData()
