@@ -298,7 +298,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""ebab6cb8-66ae-4b77-bfa5-5d5c2a460f71"",
-                    ""path"": ""<Mouse>/delta/left"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
@@ -309,7 +309,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""0a8bd24c-d038-4f49-b256-eb679bd2938a"",
-                    ""path"": ""<Mouse>/delta/right"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse"",
@@ -364,7 +364,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""0343284f-d664-4a1b-8e53-309ed2c9935a"",
-                    ""path"": ""<Mouse>/delta/down"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse;Steering Wheel"",
@@ -375,7 +375,7 @@ public partial class @KeyBoardInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""079defc9-25bd-4f66-a30b-bfbda0990f6b"",
-                    ""path"": ""<Mouse>/delta/up"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse;Steering Wheel"",

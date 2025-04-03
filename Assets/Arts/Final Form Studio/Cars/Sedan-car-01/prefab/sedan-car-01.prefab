@@ -2350,7 +2350,7 @@ Transform:
   m_GameObject: {fileID: 8302899041855246483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.306, y: 0.020299911, z: 4.25}
+  m_LocalPosition: {x: -3.333, y: 0.141, z: 4.449}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2365,7 +2365,7 @@ Light:
   m_GameObject: {fileID: 8302899041855246483}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 3
+  m_Type: 1
   m_Color: {r: 0.8301887, g: 0.13959874, b: 0.09789959, a: 1}
   m_Intensity: 337.40848
   m_Range: 2.6
@@ -2413,12 +2413,12 @@ Light:
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 2.9535532}
-  m_UseBoundingSphereOverride: 1
+  m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_LightUnit: 0
+  m_LightUnit: 2
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 0
 --- !u!114 &8302899041855246486
@@ -2830,7 +2830,7 @@ Transform:
   m_GameObject: {fileID: 8302899043022527995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.769, y: 0.020299911, z: 4.225}
+  m_LocalPosition: {x: -1.937, y: 0.16, z: 4.342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2845,7 +2845,7 @@ Light:
   m_GameObject: {fileID: 8302899043022527995}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 3
+  m_Type: 1
   m_Color: {r: 0.8301887, g: 0.13959874, b: 0.09789959, a: 1}
   m_Intensity: 337.40848
   m_Range: 2.6
@@ -2893,12 +2893,12 @@ Light:
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 2.9535532}
-  m_UseBoundingSphereOverride: 1
+  m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_LightUnit: 0
+  m_LightUnit: 2
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 0
 --- !u!114 &8302899043022527998

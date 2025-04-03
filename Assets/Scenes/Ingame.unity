@@ -1292,6 +1292,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 229664930}
   m_SourcePrefab: {fileID: 100100000, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+--- !u!54 &2102178483 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1700865776685490970, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+  m_PrefabInstance: {fileID: 2102178482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2136413117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4532171512063257957, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
@@ -1327,6 +1332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2305909100443183106, guid: 1b2b9695516e88f45be318f75c1bc675, type: 3}
+      propertyPath: carRigidbody
+      value: 
+      objectReference: {fileID: 2102178483}
     - target: {fileID: 6698416304992164351, guid: 1b2b9695516e88f45be318f75c1bc675, type: 3}
       propertyPath: m_Name
       value: IngameUIController

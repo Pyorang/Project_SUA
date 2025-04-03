@@ -10,6 +10,20 @@ public class IngameUIController : MonoBehaviour
     private int currentTime_Minute = 0;
     private float currentTime = 0;
 
+    Vector3 currentPosition, lastPosition;
+    float distance, speed;
+
+    [Header("Car Rigidbody")]
+
+    [Space]
+
+    [SerializeField] private Rigidbody carRigidbody; 
+
+    [Header("Texts")]
+
+    [Space]
+
+    [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private TextMeshProUGUI timerText;
 
     #region InputSystems
@@ -43,6 +57,12 @@ public class IngameUIController : MonoBehaviour
     public void Update()
     {
         UpdateTimerTextUI();
+    }
+
+    public void FixedUpdate()
+    {
+        speed = carRigidbody.linearVelocity.magnitude;
+        speedText.text = ((int)speed * 3.6f).ToString("000");
     }
 
     private void HandleInput()

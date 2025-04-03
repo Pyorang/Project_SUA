@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ff5d59915fede418ffbcee2ca1aeff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carRigidbody: {fileID: 0}
+  speedText: {fileID: 1187248857424511440}
   timerText: {fileID: 8130631011232312391}
 --- !u!1 &7257962964364986542
 GameObject:
