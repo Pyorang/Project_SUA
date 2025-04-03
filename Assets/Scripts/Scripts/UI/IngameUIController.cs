@@ -93,7 +93,7 @@ public class IngameUIController : MonoBehaviour
             currentTime_centiSeconds = 99;
         }
 
-        timerText.text = $"{currentTime_Minute:D2} : {currentTime_Second:D2} : {currentTime_centiSeconds:D2}";
+        timerText.text = $"{currentTime_Minute:D2}:{currentTime_Second:D2}:{currentTime_centiSeconds:D2}";
     }
 
     public void OnClickInGameSettingButton()

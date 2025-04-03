@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System;
-using static UnityEditor.FilePathAttribute;
-using UnityEngine.UIElements;
 
 public class WheelController : MonoBehaviour
 {

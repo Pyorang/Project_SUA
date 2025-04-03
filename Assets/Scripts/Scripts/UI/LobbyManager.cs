@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LobbyManager : SingletonBehaviour<LobbyManager>
 {
+    [SerializeField] private GameObject sedanCar;
     public LobbyUIController LobbyUIController { get; private set; }
 
     protected override void Init()
@@ -24,5 +25,10 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
         }
 
         LobbyUIController.Init();
+    }
+
+    private void Update()
+    {
+        sedanCar.transform.Rotate(Vector3.up, 10f * Time.deltaTime);
     }
 }

@@ -34,11 +34,11 @@ public class SettingUI : BaseUI
 
         if (isSFXOn)
         {
-            SFXButtonText.text = "SFX ON";
+            SFXButtonText.text = "ON";
         }
         else
         {
-            SFXButtonText.text = "SFX OFF";
+            SFXButtonText.text = "OFF";
         }
     }
 }

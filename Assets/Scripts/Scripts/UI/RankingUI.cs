@@ -1,8 +1,5 @@
-using Palmmedia.ReportGenerator.Core.Parser.Filtering;
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class RankingUI : BaseUI
 {
@@ -33,7 +30,7 @@ public class RankingUI : BaseUI
                 survivedTime_centiSecond = 99;
             }
 
-            rankingScore[i].text = $"{survivedTime_Minute:D2} : {survivedTime_Second:D2} : {survivedTime_centiSecond:D2}";
+            rankingScore[i].text = $"{survivedTime_Minute:D2}:{survivedTime_Second:D2}:{survivedTime_centiSecond:D2}";
         }
     }
 }
