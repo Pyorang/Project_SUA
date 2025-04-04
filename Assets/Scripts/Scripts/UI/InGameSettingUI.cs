@@ -144,7 +144,7 @@ public class InGameSettingUI : BaseUI
     public void OnClickGoToLobbyButton()
     {
         Close(false);
-        SceneLoader.Instance.LoadScene(ESceneType.Lobby);
+        SceneLoader.Instance.LoadSceneAsync(ESceneType.Lobby);
     }
 
     public void OnClickLeftMenuButton()
