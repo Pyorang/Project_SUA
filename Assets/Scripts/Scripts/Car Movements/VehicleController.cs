@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class VehicleController : MonoBehaviour
 {
+    private bool isKeyBoard = UserDataManager.Instance.GetUserData<UserSettingData>().IsKeyBoard;
+
     [Header("Controllers")]
     [Space]
 
@@ -17,12 +19,18 @@ public class VehicleController : MonoBehaviour
     #endregion
     #region InputSystems
     KeyBoardInputActions action;
-    InputAction moveFrontBackAction;
-    InputAction moveLeftRightAction;
-    InputAction breakAction;
-    InputAction lightControlAction;
-    InputAction sideBreakAction;
-    InputAction GearChangeAction;
+    InputAction frontMoveKeyBoard;
+    InputAction frontMoveSteeringWheel;
+    InputAction leftRightMoveKeyBoard;
+    InputAction leftRightSteeringWheel;
+    InputAction breakKeyBoard;
+    InputAction breakSteeringWheel;
+    InputAction lightControlKeyBoard;
+    InputAction lightControlSteeringWheel;
+    InputAction sideBreakKeyBoard;
+    InputAction sideBreakSteeringWheel;
+    InputAction GearChangeKeyBoard;
+    InputAction GearChangeSteeringWheel;
     #endregion
 
     private void Awake()
@@ -33,12 +41,12 @@ public class VehicleController : MonoBehaviour
 
     private void OnEnable()
     {
-        EnableAllActions();
+        EnableAllActions(isKeyBoard);
     }
 
     private void OnDisable()
     {
-        DisableAllActions();
+        DisableAllActions(isKeyBoard);
     }
 
     private void FixedUpdate()
@@ -51,12 +59,18 @@ public class VehicleController : MonoBehaviour
     void AllocateInputActions()
     {
         action = new KeyBoardInputActions();
-        moveFrontBackAction = action.Car.FrontBack;
-        moveLeftRightAction = action.Car.LeftRight;
-        breakAction = action.Car.Break;
-        lightControlAction = action.Car.LightControl;
-        sideBreakAction = action.Car.SideBreak;
-        GearChangeAction = action.Car.GearChange;
+        frontMoveKeyBoard = action.Car.FrontMoveKeyBoard;
+        frontMoveSteeringWheel = action.Car.FrontMoveSteeringWheel;
+        leftRightMoveKeyBoard = action.Car.LeftRightMoveKeyBoard;
+        leftRightSteeringWheel = action.Car.LeftRightMoveSteeringWheel;
+        breakKeyBoard = action.Car.BreakKeyBoard;
+        breakSteeringWheel = action.Car.BreakSteeringWheel;
+        lightControlKeyBoard = action.Car.LightControlKeyBoard;
+        lightControlSteeringWheel = action.Car.LightControlSteeringWheel;
+        sideBreakKeyBoard = action.Car.SideBreakKeyBoard;
+        sideBreakSteeringWheel = action.Car.SideBreakSteeringWheel;
+        GearChangeKeyBoard = action.Car.GearChangeKeyBoard;
+        GearChangeSteeringWheel = action.Car.GearChangeSteeringWheel;
     }
 
     void InitGears()
@@ -68,45 +82,84 @@ public class VehicleController : MonoBehaviour
         currentGear = P;
     }
 
-    void EnableAllActions()
+    void EnableAllActions(bool isKeyBoard)
     {
-        moveFrontBackAction.Enable();
-        moveLeftRightAction.Enable();
-        breakAction.Enable();
-        lightControlAction.Enable();
-        lightControlAction.performed += GetLightControl;
-        sideBreakAction.Enable();
-        sideBreakAction.performed += GetSideBreakControl;
-        GearChangeAction.Enable();
-        GearChangeAction.performed += GetGearChangeControl;
+        if(isKeyBoard)
+        {
+            frontMoveKeyBoard.Enable();
+            leftRightMoveKeyBoard.Enable();
+            breakKeyBoard.Enable();
+            lightControlKeyBoard.Enable();
+            lightControlKeyBoard.performed += GetLightControl;
+            sideBreakKeyBoard.Enable();
+            sideBreakKeyBoard.performed += GetSideBreakControl;
+            GearChangeKeyBoard.Enable();
+            GearChangeKeyBoard.performed += GetGearChangeControl;
+        }
+        else
+        {
+            frontMoveSteeringWheel.Enable();
+            leftRightSteeringWheel.Enable();
+            breakSteeringWheel.Enable();
+            lightControlSteeringWheel.Enable();
+            lightControlSteeringWheel.performed += GetLightControl;
+            sideBreakSteeringWheel.Enable();
+            sideBreakSteeringWheel.performed += GetSideBreakControl;
+            GearChangeSteeringWheel.Enable();
+            GearChangeSteeringWheel.performed += GetGearChangeControl;
+        }
     }
 
-    void DisableAllActions()
+    void DisableAllActions(bool isKeyBoard)
     {
-        moveFrontBackAction.Disable();
-        moveLeftRightAction.Disable();
-        breakAction.Disable();
-        lightControlAction.Disable();
-        lightControlAction.performed -= GetLightControl;
-        sideBreakAction.Disable();
-        sideBreakAction.performed -= GetSideBreakControl;
-        GearChangeAction.Disable();
-        GearChangeAction.performed -= GetGearChangeControl;
+        if (isKeyBoard)
+        {
+            frontMoveKeyBoard.Disable();
+            leftRightMoveKeyBoard.Disable();
+            breakKeyBoard.Disable();
+            lightControlKeyBoard.Disable();
+            lightControlKeyBoard.performed -= GetLightControl;
+            sideBreakKeyBoard.Disable();
+            sideBreakKeyBoard.performed -= GetSideBreakControl;
+            GearChangeKeyBoard.Disable();
+            GearChangeKeyBoard.performed -= GetGearChangeControl;
+        }
+        else
+        {
+            frontMoveSteeringWheel.Disable();
+            leftRightSteeringWheel.Disable();
+            breakSteeringWheel.Disable();
+            lightControlSteeringWheel.Disable();
+            lightControlSteeringWheel.performed -= GetLightControl;
+            sideBreakSteeringWheel.Disable();
+            sideBreakSteeringWheel.performed -= GetSideBreakControl;
+            GearChangeSteeringWheel.Disable();
+            GearChangeSteeringWheel.performed -= GetGearChangeControl;
+        }
     }
 
-    public float GetAccelerate()
+    public float GetAccelerate(bool isKeyBoard)
     {
-        return moveFrontBackAction.ReadValue<float>();
+        if (isKeyBoard)
+            return frontMoveKeyBoard.ReadValue<float>();
+        else
+            return frontMoveSteeringWheel.ReadValue<float>();
     }
 
-    public float GetLeftRight()
+    public float GetLeftRight(bool isKeyBoard)
     {
-        return moveLeftRightAction.ReadValue<float>();
+        if (isKeyBoard)
+            return leftRightMoveKeyBoard.ReadValue<float>();
+        else
+            return leftRightSteeringWheel.ReadValue<float>();
     }
 
-    public float GetBreak()
+    public float GetBreak(bool isKeyBoard)
     {
-        return breakAction.ReadValue<float>();
+        if (isKeyBoard)
+            return breakKeyBoard.ReadValue<float>();
+        else
+            return breakSteeringWheel.ReadValue<float>();
     }
 
     public void GetLightControl(InputAction.CallbackContext context)

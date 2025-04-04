@@ -10,8 +10,7 @@ public class IngameUIController : MonoBehaviour
     private int currentTime_Minute = 0;
     private float currentTime = 0;
 
-    Vector3 currentPosition, lastPosition;
-    float distance, speed;
+    float speed;
 
     [Header("Car Rigidbody")]
 
@@ -28,7 +27,8 @@ public class IngameUIController : MonoBehaviour
 
     #region InputSystems
     KeyBoardInputActions action;
-    InputAction escapeKeyAction;
+    InputAction escapeKeyBoard;
+    InputAction escapeSteeringWheel;
     #endregion
 
 
@@ -39,14 +39,40 @@ public class IngameUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        escapeKeyAction.Enable();
-        escapeKeyAction.performed += GetSettingButtonControl;
+        EnableAllActions(UserDataManager.Instance.GetUserData<UserSettingData>().IsKeyBoard);
     }
 
     private void OnDisable()
     {
-        escapeKeyAction.Disable();
-        escapeKeyAction.performed -= GetSettingButtonControl;
+        DisableAllActions(UserDataManager.Instance.GetUserData<UserSettingData>().IsKeyBoard);
+    }
+
+    void EnableAllActions(bool isKeyBoard)
+    {
+        if (isKeyBoard)
+        {
+            escapeKeyBoard.Enable();
+            escapeKeyBoard.performed += GetSettingButtonControl;
+        }
+        else
+        {
+            escapeSteeringWheel.Enable();
+            escapeSteeringWheel.performed += GetSettingButtonControl;
+        }
+    }
+
+    void DisableAllActions(bool isKeyBoard)
+    {
+        if (isKeyBoard)
+        {
+            escapeKeyBoard.Disable();
+            escapeKeyBoard.performed -= GetSettingButtonControl;
+        }
+        else
+        {
+            escapeSteeringWheel.Disable();
+            escapeSteeringWheel.performed -= GetSettingButtonControl;
+        }
     }
 
     public void Init()
@@ -125,6 +151,7 @@ public class IngameUIController : MonoBehaviour
     private void AllocateEscapeActions()
     {
         action = new KeyBoardInputActions();
-        escapeKeyAction = action.Car.Settings;
+        escapeKeyBoard = action.Car.SettingsKeyBoard;
+        escapeSteeringWheel = action.Car.SettingsSteeringWheel;
     }
 }

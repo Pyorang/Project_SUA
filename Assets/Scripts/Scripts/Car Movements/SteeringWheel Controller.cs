@@ -11,8 +11,6 @@ public class SteeringWheelController : MonoBehaviour
     
     [SerializeField] Transform steeringWheel;
 
-    private float currentTurnAngle = 0f;
-
     public void UpdateSteeringWheel(float Input)
     {
         Vector3 rotation = steeringWheel.localEulerAngles;

@@ -11,6 +11,7 @@ public enum GearType
 
 public class Gear
 {
+    public bool isKeyBoard = UserDataManager.Instance.GetUserData<UserSettingData>().IsKeyBoard;
     public GearType gear;
     public VehicleController vehicleController;
     public WheelController wheelController;
@@ -22,8 +23,8 @@ public class Gear
 
     public virtual void Drive()
     {
-        wheelController.ApplyWheelTurnAngle(vehicleController.GetLeftRight());
-        wheelController.ApplyBrakeForce(vehicleController.GetBreak());
+        wheelController.ApplyWheelTurnAngle(vehicleController.GetLeftRight(isKeyBoard));
+        wheelController.ApplyBrakeForce(vehicleController.GetBreak(isKeyBoard));
     }
 
     public static implicit operator Gear(string v)
@@ -43,7 +44,7 @@ public class DriveGear : Gear
 
     public override void Drive()
     {
-        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(),false);
+        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(isKeyBoard),false);
         base.Drive();
     }
 }
@@ -75,7 +76,7 @@ public class ReverseGear : Gear
 
     public override void Drive()
     {
-        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(),true);
+        wheelController.ApplyAcceleration(vehicleController.GetAccelerate(isKeyBoard),true);
         base.Drive();
     }
 }

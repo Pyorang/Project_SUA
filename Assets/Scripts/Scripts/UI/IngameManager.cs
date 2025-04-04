@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngameManager : SingletonBehaviour<LobbyManager>
+public class IngameManager : SingletonBehaviour<IngameManager>
 {
-    public LobbyUIController LobbyUIController { get; private set; }
+    public IngameUIController ingameUIController { get; private set; }
 
     protected override void Init()
     {

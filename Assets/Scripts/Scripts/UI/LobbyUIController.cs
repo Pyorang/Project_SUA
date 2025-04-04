@@ -19,8 +19,10 @@ public class LobbyUIController : MonoBehaviour
 
     #region InputSystems
     KeyBoardInputActions action;
-    InputAction selectMenu;
-    InputAction escapeKeyAction;
+    InputAction selectMenuKeyBoard;
+    InputAction selectMenuSteeringWheel;
+    InputAction enterMenuKeyBoard;
+    InputAction enterMenuSteeringWheel;
     #endregion
 
     public void Awake()
@@ -30,29 +32,31 @@ public class LobbyUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        selectMenu.Enable();
-        selectMenu.performed += GetMenuButtonControl;
-        escapeKeyAction.Enable();
-        escapeKeyAction.performed += GetSettingButtonControl;
+        selectMenuKeyBoard.Enable();
+        selectMenuKeyBoard.performed += GetMenuButtonControl;
+        selectMenuSteeringWheel.Enable();
+        selectMenuSteeringWheel.performed += GetMenuButtonControl;
+        enterMenuKeyBoard.Enable() ;
+        enterMenuKeyBoard.performed += GetMenuButtonControl;
+        enterMenuSteeringWheel.Enable();
+        enterMenuSteeringWheel.performed += GetMenuButtonControl;
     }
 
     private void OnDisable()
     {
-        selectMenu.Enable();
-        selectMenu.performed -= GetMenuButtonControl;
-        escapeKeyAction.Disable();
-        escapeKeyAction.performed -= GetSettingButtonControl;
+        selectMenuKeyBoard.Disable();
+        selectMenuKeyBoard.performed -= GetMenuButtonControl;
+        selectMenuSteeringWheel.Disable();
+        selectMenuSteeringWheel.performed -= GetMenuButtonControl;
+        enterMenuKeyBoard.Disable();
+        enterMenuKeyBoard.performed -= GetMenuButtonControl;
+        enterMenuSteeringWheel.Disable();
+        enterMenuSteeringWheel.performed -= GetMenuButtonControl;
     }
 
     public void Init()
     {
         //
-    }
-
-    public void OnClickSettingButton()
-    {
-        var uiData = new BaseUIData();
-        UIManager.Instance.OpenUI<SettingUI>(uiData);
     }
 
     private void OnClickPlayButton()
@@ -109,67 +113,45 @@ public class LobbyUIController : MonoBehaviour
         }
     }
 
-    private void HandleInput()
-    {
-        //AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
-
-        var frontUI = UIManager.Instance.GetFrontUI();
-        if (frontUI != null)
-        {
-            frontUI.Close();
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            OnClickSettingButton();
-        }
-    }
     public void GetMenuButtonControl(InputAction.CallbackContext context)
     {
-        var control = context.control;
-
-        switch (control.name)
+        if(!UIManager.Instance.ExistAnyOpenUI())
         {
-            case "leftArrow":
-                OnClickLeftMenuButton();
-                break;
-            case "hat/left":
-                OnClickLeftMenuButton();
-                break;
-            case "rightArrow":
-                OnClickRightMenuButton();
-                break;
-            case "hat/right":
-                OnClickRightMenuButton();
-                break;
-            default:
-                Debug.Log("Unknown input : " + control.name);
-                break;
-        }
-    }
+            var control = context.control;
 
-    public void GetSettingButtonControl(InputAction.CallbackContext context)
-    {
-        var control = context.control;
-
-        switch (control.name)
-        {
-            case "escape":
-                HandleInput();
-                break;
-            case "button10":
-                HandleInput();
-                break;
-            default:
-                Debug.Log("Unknown input : " + control.name);
-                break;
+            switch (control.name)
+            {
+                case "leftArrow":
+                    OnClickLeftMenuButton();
+                    break;
+                case "left":
+                    OnClickLeftMenuButton();
+                    break;
+                case "rightArrow":
+                    OnClickRightMenuButton();
+                    break;
+                case "right":
+                    OnClickRightMenuButton();
+                    break;
+                case "enter":
+                    HandleMenuButton();
+                    break;
+                case "button3":
+                    HandleMenuButton();
+                    break;
+                default:
+                    Debug.Log("Unknown input : " + control.name);
+                    break;
+            }
         }
     }
 
     private void AllocateEscapeActions()
     {
         action = new KeyBoardInputActions();
-        selectMenu = action.Car.LookLeftRight;
-        escapeKeyAction = action.Car.Settings;
+        selectMenuKeyBoard = action.Car.LeftRightKeyBoard;
+        selectMenuSteeringWheel = action.Car.LeftRightSteeringWheel;
+        enterMenuKeyBoard = action.Car.SelectKeyBoard;
+        enterMenuSteeringWheel = action.Car.SelectSteeringWheel;
     }
 }
