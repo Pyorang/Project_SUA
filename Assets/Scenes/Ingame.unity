@@ -1198,6 +1198,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6057644104830232242, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.57357645
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057644104830232242, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8191521
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057644104830232242, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -110
+      objectReference: {fileID: 0}
     - target: {fileID: 6071231208952654171, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
       propertyPath: m_Name
       value: Player Car
@@ -1209,6 +1221,18 @@ PrefabInstance:
     - target: {fileID: 7394565172805531514, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
       propertyPath: clearColorMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802913705214220921, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.57357645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802913705214220921, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.81915206
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802913705214220921, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 8294911954508413667, guid: 74799d0316b37c94bbebf15c92340595, type: 3}
       propertyPath: m_LocalPosition.x
