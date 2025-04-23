@@ -11,7 +11,7 @@ public class VehicleController : MonoBehaviour
     [Space]
 
     [SerializeField] private WheelController wheelController;
-    [SerializeField] private LightController lightController;
+    //[SerializeField] private LightController lightController;
 
     #region Gears
     private Gear D, N, R, P;
@@ -90,7 +90,7 @@ public class VehicleController : MonoBehaviour
             leftRightMoveKeyBoard.Enable();
             breakKeyBoard.Enable();
             lightControlKeyBoard.Enable();
-            lightControlKeyBoard.performed += GetLightControl;
+            //lightControlKeyBoard.performed += GetLightControl;
             sideBreakKeyBoard.Enable();
             sideBreakKeyBoard.performed += GetSideBreakControl;
             GearChangeKeyBoard.Enable();
@@ -102,7 +102,7 @@ public class VehicleController : MonoBehaviour
             leftRightSteeringWheel.Enable();
             breakSteeringWheel.Enable();
             lightControlSteeringWheel.Enable();
-            lightControlSteeringWheel.performed += GetLightControl;
+            //lightControlSteeringWheel.performed += GetLightControl;
             sideBreakSteeringWheel.Enable();
             sideBreakSteeringWheel.performed += GetSideBreakControl;
             GearChangeSteeringWheel.Enable();
@@ -118,7 +118,7 @@ public class VehicleController : MonoBehaviour
             leftRightMoveKeyBoard.Disable();
             breakKeyBoard.Disable();
             lightControlKeyBoard.Disable();
-            lightControlKeyBoard.performed -= GetLightControl;
+            //lightControlKeyBoard.performed -= GetLightControl;
             sideBreakKeyBoard.Disable();
             sideBreakKeyBoard.performed -= GetSideBreakControl;
             GearChangeKeyBoard.Disable();
@@ -130,7 +130,7 @@ public class VehicleController : MonoBehaviour
             leftRightSteeringWheel.Disable();
             breakSteeringWheel.Disable();
             lightControlSteeringWheel.Disable();
-            lightControlSteeringWheel.performed -= GetLightControl;
+            //lightControlSteeringWheel.performed -= GetLightControl;
             sideBreakSteeringWheel.Disable();
             sideBreakSteeringWheel.performed -= GetSideBreakControl;
             GearChangeSteeringWheel.Disable();
@@ -162,7 +162,7 @@ public class VehicleController : MonoBehaviour
             return breakSteeringWheel.ReadValue<float>();
     }
 
-    public void GetLightControl(InputAction.CallbackContext context)
+    /*public void GetLightControl(InputAction.CallbackContext context)
     {
         var control = context.control;
         
@@ -177,7 +177,7 @@ public class VehicleController : MonoBehaviour
             default:
                 break;
         }
-    }
+    }*/
 
     public void GetSideBreakControl(InputAction.CallbackContext context)
     {
