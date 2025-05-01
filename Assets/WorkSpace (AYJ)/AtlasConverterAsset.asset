@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ac03c25e6e2ab4189ac11beedadefa, type: 3}
+  m_Name: AtlasConverterAsset
+  m_EditorClassIdentifier: 
+  terrainData: {fileID: 15600000, guid: 418624bec920b9e4987aeb667ba6effc, type: 2}
+  stampAsset: {fileID: 11400000, guid: 8725250614d8b89428cca937d5385a0d, type: 2}
+  stampPrefab: {fileID: 2883071709145773036, guid: 2b9b93adae921a04ea1b42755082b2f7, type: 3}
+  normalizeHeight: 1
+  useMasking: 1
+  mode: 0
+  size: 0.99
+  fade: 0.1
+  opacity: 1
+  maskHeightFrom: 0.01
+  maskHeightTo: 0.1
+  lastPreviewHeightRange: {x: 0.028627235, y: 0.22239517}
