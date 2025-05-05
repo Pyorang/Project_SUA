@@ -2,14 +2,29 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class SpawnObject
+{
+    public string name;
+    public GameObject prefab;
+    public Sprite sprite;
+}
+
 public class SelectivePointSpawner : MonoBehaviour
 {
     public static SelectivePointSpawner Instance { get; private set; }
 
-    [SerializeField] private List<Vector3> spawnPositions = new List<Vector3>();
-    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>();
+    [Header("스폰할 위치")]
+    [SerializeField] private List<Vector3> spawnPositions = new();
 
+    [Header("스폰할 객체 정보 리스트")]
+    [SerializeField] private List<SpawnObject> spawnObjects = new();
+
+    [SerializeField] private SequentialQuiz SequentialQuiz;
     private int spawnNum = 3;
+
+    private List<SpawnObject> assignedObjects;
+    public List<SpawnObject> spawnedInfos { get; private set; } = new();
 
     private void Awake()
     {
@@ -26,29 +41,50 @@ public class SelectivePointSpawner : MonoBehaviour
     {
         RandomSpawn();
     }
+
     public void RandomSpawn()
     {
         int posCount = spawnPositions.Count;
-        int prefabCount = spawnPrefabs.Count;
+        int objCount = spawnObjects.Count;
+        int count = Mathf.Min(spawnNum, posCount, objCount);
 
-        int count = Mathf.Min(spawnNum, posCount, prefabCount);
+        assignedObjects = Enumerable
+            .Repeat<SpawnObject>(null, posCount)
+            .ToList();
 
+        // 위치 인덱스와 오브젝트 인덱스 랜덤으로 추출
         var posIndices = Enumerable.Range(0, posCount)
                                    .OrderBy(_ => Random.value)
                                    .Take(count)
                                    .ToList();
 
-        var prefabIndices = Enumerable.Range(0, prefabCount)
+        var objectIndices = Enumerable.Range(0, objCount)
                                       .OrderBy(_ => Random.value)
                                       .Take(count)
                                       .ToList();
 
         for (int i = 0; i < count; i++)
         {
-            Vector3 spawnPos = spawnPositions[posIndices[i]];
-            GameObject prefab = spawnPrefabs[prefabIndices[i]];
+            int posIdx = posIndices[i];
+            SpawnObject so = spawnObjects[objectIndices[i]];
 
-            Instantiate(prefab, spawnPos, Quaternion.identity);
+            assignedObjects[posIdx] = so;
+
+            Instantiate(so.prefab, spawnPositions[posIdx], Quaternion.identity);
         }
+
+        spawnedInfos.Clear();
+        
+        // 오브젝트 순서대로 기록
+        for (int i = 0; i < assignedObjects.Count; i++)
+        {
+            if (assignedObjects[i] != null)
+            {
+                spawnedInfos.Add(assignedObjects[i]);
+            }
+        }
+
+        for (int i = 0; i < spawnedInfos.Count; i++)
+            Debug.Log($"Spawn order [{i}]: {spawnedInfos[i].name}");
     }
 }
