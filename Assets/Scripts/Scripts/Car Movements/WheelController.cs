@@ -51,13 +51,27 @@ public class WheelController : MonoBehaviour
     {
         float appliedInput = Mathf.Clamp01(input);
 
-        currentAcceleration = acceleration * appliedInput;
-
-        bool isLowSpeed = CarBodyRb.linearVelocity.magnitude * 3.6f < noAccelerateMaxSpeed;
-        if (appliedInput == 0 && isLowSpeed)
+        if (appliedInput > 0)
         {
-            currentAcceleration = defaultAcceleration;
-            // Debug.Log("Applying default acceleration due to low speed.");
+            currentAcceleration = acceleration * appliedInput;
+        }
+
+        else
+        {
+            float currentSpeedKmh = CarBodyRb.linearVelocity.magnitude * 3.6f;
+
+            if (currentSpeedKmh < noAccelerateMaxSpeed)
+            {
+                float speedRatio = Mathf.InverseLerp(0, noAccelerateMaxSpeed, currentSpeedKmh);
+                float smoothAcceleration = Mathf.Lerp(defaultAcceleration, 0, speedRatio);
+
+                currentAcceleration = smoothAcceleration;
+            }
+
+            else
+            {
+                currentAcceleration = 0f;
+            }
         }
 
         if (reverse)
