@@ -20,6 +20,7 @@ public class SelectivePointSpawner : MonoBehaviour
     [Header("스폰할 객체 정보 리스트")]
     [SerializeField] private List<SpawnObject> spawnObjects = new();
 
+    [SerializeField] private ParticleSystem particlePrefab;
     [SerializeField] private SequentialQuiz sequentialQuiz;
     private int spawnNum = 3;
 
@@ -73,6 +74,9 @@ public class SelectivePointSpawner : MonoBehaviour
 
             assignedObjects[posIdx] = so;
             Instantiate(so.prefab, spawnPositions[posIdx], Quaternion.identity);
+            
+            if (particlePrefab != null)
+                Instantiate(particlePrefab, spawnPositions[posIdx], Quaternion.identity);
         }
 
         // 오브젝트를 순서대로 기록
