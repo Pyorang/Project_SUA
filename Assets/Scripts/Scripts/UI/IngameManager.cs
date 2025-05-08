@@ -8,8 +8,9 @@ public class IngameManager : SingletonBehaviour<IngameManager>
 
     protected override void Init()
     {
-        IsDestroyOnLoad = false;
+        IsDestroyOnLoad = true;
 
+        ingameUIController = FindAnyObjectByType<IngameUIController>();
         base.Init();
     }
 }
