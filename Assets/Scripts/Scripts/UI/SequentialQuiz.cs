@@ -40,9 +40,15 @@ public class SequentialQuiz : MonoBehaviour
         }
 
         var spawned = SelectivePointSpawner.Instance.spawnedInfos;
-        for (int i = 0; i < spawned.Count && i < slotButtons.Count; i++)
+        var slotIndices = Enumerable.Range(0, slotButtons.Count)
+                                    .OrderBy(_ => Random.value)
+                                    .Take(spawned.Count)
+                                    .ToList();
+        
+        for (int i = 0; i < spawned.Count; i++)
         {
-            DisplayInformation(i, spawned[i]);
+            int randomSlot = slotIndices[i];
+            DisplayInformation(randomSlot, spawned[i]);
         }
 
         for (int i = 0; i < choosenButtons.Count; i++)
@@ -115,6 +121,26 @@ public class SequentialQuiz : MonoBehaviour
 
     public void OnClickConfirmButton()
     {
-        //
+        var spawned = SelectivePointSpawner.Instance.spawnedInfos;
+        int wrongCount = 0;
+        int totalCount = spawned.Count;
+
+        for (int i = 0; i < totalCount; i++)
+        {
+            if (choosenAnswer[i] != spawned[i])
+            {
+                wrongCount++;
+            }
+        }
+
+        if(wrongCount == 0)
+        {
+            Debug.Log("다 맞았습니다.");
+        }
+        else
+        {
+            Debug.Log($"{wrongCount}개 틀렸습니다.");
+        }
+
     }
 }

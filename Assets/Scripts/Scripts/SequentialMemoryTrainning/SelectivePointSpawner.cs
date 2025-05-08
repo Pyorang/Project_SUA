@@ -65,6 +65,7 @@ public class SelectivePointSpawner : MonoBehaviour
                                       .Take(count)
                                       .ToList();
 
+        // 오브젝트를 랜덤으로 배치
         for (int i = 0; i < count; i++)
         {
             int posIdx = posIndices[i];
@@ -72,12 +73,9 @@ public class SelectivePointSpawner : MonoBehaviour
 
             assignedObjects[posIdx] = so;
             Instantiate(so.prefab, spawnPositions[posIdx], Quaternion.identity);
-
-            spawnedInfos.Add(so);
         }
 
-
-        // 오브젝트 순서대로 기록
+        // 오브젝트를 순서대로 기록
         for (int i = 0; i < assignedObjects.Count; i++)
         {
             if (assignedObjects[i] != null)
