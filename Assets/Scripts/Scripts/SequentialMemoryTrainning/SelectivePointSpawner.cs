@@ -20,10 +20,10 @@ public class SelectivePointSpawner : MonoBehaviour
     [Header("스폰할 객체 정보 리스트")]
     [SerializeField] private List<SpawnObject> spawnObjects = new();
 
-    [SerializeField] private SequentialQuiz SequentialQuiz;
+    [SerializeField] private SequentialQuiz sequentialQuiz;
     private int spawnNum = 3;
 
-    private List<SpawnObject> assignedObjects;
+    public List<SpawnObject> assignedObjects { get; private set; }
     public List<SpawnObject> spawnedInfos { get; private set; } = new();
 
     private void Awake()
@@ -52,6 +52,8 @@ public class SelectivePointSpawner : MonoBehaviour
             .Repeat<SpawnObject>(null, posCount)
             .ToList();
 
+        spawnedInfos.Clear();
+
         // 위치 인덱스와 오브젝트 인덱스 랜덤으로 추출
         var posIndices = Enumerable.Range(0, posCount)
                                    .OrderBy(_ => Random.value)
@@ -69,12 +71,12 @@ public class SelectivePointSpawner : MonoBehaviour
             SpawnObject so = spawnObjects[objectIndices[i]];
 
             assignedObjects[posIdx] = so;
-
             Instantiate(so.prefab, spawnPositions[posIdx], Quaternion.identity);
+
+            spawnedInfos.Add(so);
         }
 
-        spawnedInfos.Clear();
-        
+
         // 오브젝트 순서대로 기록
         for (int i = 0; i < assignedObjects.Count; i++)
         {
